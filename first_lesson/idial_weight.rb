@@ -14,11 +14,11 @@ def check_input(inp,type)
 end
 
 def result(name, height)
-	weight = (height - 110) * 1.15
+	weight = ((height - 110) * 1.15).round(1)
 	if weight < 0.0 
 		puts "#{name}. Ваш вес уже идеальный"
 	else
-		puts "{name}. Ваш вес: #{weight}"
+		puts "#{name}. Ваш вес: #{weight}"
 	end
 end
 
