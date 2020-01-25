@@ -15,21 +15,6 @@ def check_input(inp,type)
 	end
 end
 
-def calculate_discremenant(a, b, c)
-	b**2 - 4 * a * c
-end
-
-def calculate_roots_equention(a, b, c, d)
-	if d < 0
-		return nil, nil
-	elsif d.round(8) == 0.0
-		return -b / ( 2 * a ) , nil
-	else # d > 0
-		e = Math.sqrt(d)
-		return -b + e / ( 2 * a ) , -b - e / ( 2 * a )
-	end
-end
-
 def calculate_type_of_triangle(a, b, c)
 	l = [a, b, c].sort!
 	r = l[2]
@@ -61,17 +46,6 @@ def main
 	b = get_var("Сторона b: ")
 	c = get_var("Сторона c: ")
 	
-	d = calculate_discremenant(a, b, c)
-	re1, re2 = calculate_roots_equention(a, b, c, d)
-
-	puts "Дискриминант: #{d.round(3)}"
-	if d > 0 
-		puts "Корни: #{re1.round(3)} ; #{re2.round(3)}"
-	elsif d == 0
-		puts "Корень: #{re1.round(3)}"
-	else # d <0
-		puts "Корней нет"
-	end
 	type = calculate_type_of_triangle(a, b, c)
 	puts "Треугольник: #{type}"
 end
