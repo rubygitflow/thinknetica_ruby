@@ -1,5 +1,5 @@
 def check_exit(inp)
-  ["exit", "quit", "close"].include?(inp.downcase)
+  ['exit', 'quit', 'close'].include?(inp.downcase)
 end
 
 def check_input(inp,type)

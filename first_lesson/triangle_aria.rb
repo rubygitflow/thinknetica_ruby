@@ -15,8 +15,8 @@ end
 
 
 def main
-  base = get_var("Высота треугольника: ")
-  height = get_var("Основание треугольника: ")
+  base = get_var('Высота треугольника: ')
+  height = get_var('Основание треугольника: ')
 
   puts "Размеры треугольника: #{base} #{height}"
   aria = calculate(base, height).round(3)

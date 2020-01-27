@@ -10,7 +10,7 @@ def result(name, height)
 end
 
 def dialogue(name)
-  print "Ваш рост в сантиметрах: "
+  print 'Ваш рост в сантиметрах: '
   height = gets.chomp
   if check_exit(height) 
     puts "Bye-bye, #{name}!"
@@ -25,10 +25,10 @@ def dialogue(name)
 end
 
 def main
-  print "Ваше имя: "
+  print 'Ваше имя: '
   name = gets.chomp!.capitalize
   if check_exit(name)
-    puts "Bye-bye!"
+    puts 'Bye-bye!'
   elsif check_input(name, 0)
     dialogue(name)
   else

@@ -1,17 +1,16 @@
 load 'ex_routines.rb'
 
 def calculate_type_of_triangle(a, b, c)
-  l = [a, b, c].sort!
-  r = l[2]
+  a, b, h = [a, b, c].sort
 
-    if r**r.round(3) == (l[0]**l[0] + l[1]**l[1]).round(3)
-      "Прямоугольный"
-    elsif (a == b) && (b == c)
-      "Равносторонний"
-  elsif (a == b) || (b == c) || (c == a)
-    "Равнобедренный"
+  if (h**2).round(3) == (a**2 + b**2).round(3)
+    'Прямоугольный'
+  elsif (a == b) && (b == h)
+    'Равносторонний'
+  elsif (a == b) || (b == h) || (h == a)
+    'Равнобедренный'
   else
-    "Разносторонний"
+    'Разносторонний'
   end
 end
 
@@ -26,10 +25,10 @@ end
 
 
 def main
-  puts "Введите длины сторон треугольника"
-  a = get_var("Сторона a: ")
-  b = get_var("Сторона b: ")
-  c = get_var("Сторона c: ")
+  puts 'Введите длины сторон треугольника'
+  a = get_var('Сторона a: ')
+  b = get_var('Сторона b: ')
+  c = get_var('Сторона c: ')
   
   type = calculate_type_of_triangle(a, b, c)
   puts "Треугольник: #{type}"
