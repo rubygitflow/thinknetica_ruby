@@ -1,43 +1,39 @@
 load 'ex_routines.rb'
 
-$basket = {}
+@basket = {}
 
 def get_string(description)
   print description
-  inp = gets.chomp
-  if check_exit(inp)
+  input = gets.chomp
+  if check_exit(input)
     nil
   else
-    if check_input(inp, 0) 
-      res = inp
+    if check_input(input, 0) 
+      result = input
     else
-      res = get_string(description) 
+      result = get_string(description) 
     end
-    res
+    result
   end
 end
 
 def get_float(description)
   print description
-  inp = gets.chomp
-  res = inp.gsub(',', '.').to_f
-  res = get_float(description) unless check_input(res, 2)
-  res
+  input = gets.chomp
+  result = input.gsub(',', '.').to_f
+  result = get_float(description) unless check_input(result, 2)
+  result
 end
 
 def purchase_amount
   puts "Корзина покупок:"
-  puts "#{$basket.inspect}"
+  puts "#{@basket.inspect}"
 
   total_sum = 0
   puts "Суммы по видам покупок:"
-  $basket.each_pair{|key, value| 
-    local_arr = value.to_a
-    sum = 0
-    local_arr.each { |val|
-      sum += val[0] * val[1]
-    }
-    puts "#{key} => #{sum}" 
+  @basket.each_pair{|item, price_count| 
+    sum = price_count.sum(0.0){|price, count| price*count}
+    puts "#{item} => #{sum}" 
     total_sum += sum
   }
   
@@ -52,7 +48,7 @@ def input_purchase
     price = get_float('Цена за единицу: ')
     amount = get_float('Кол-во товара: ')
     new_pos = {name => {price => amount}}
-    $basket.merge!(new_pos){|key, oldval, newval| 
+    @basket.merge!(new_pos){|key, oldval, newval| 
       oldval.merge!(newval){|inner_key, inner_oldval, inner_newval| 
         inner_oldval+inner_newval
       }

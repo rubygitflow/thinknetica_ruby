@@ -2,11 +2,11 @@ load 'ex_routines.rb'
 
 def get_year(description)
   print description 
-  inp = gets.chomp
-  exit if check_exit(inp)
-  res = inp.to_i
-  res = get_year(description) unless check_input(res, 1)
-  res
+  input = gets.chomp
+  exit if check_exit(input)
+  year = input.to_i
+  year = get_year(description) unless check_input(year, 1)
+  year
 end
 
 def check_month(description)
@@ -24,30 +24,30 @@ def check_month(description)
             ['december','dec','12']
           ]
   months.each_with_index{ |arr,index| 
-    return (index + 1) if arr.include?(description.to_s.downcase)
+    return index + 1 if arr.include?(description.to_s.downcase)
   }
-  return 0
+  0
 end
 
 def get_month(description)
   print description 
-  inp = gets.chomp
-  exit if check_exit(inp)
-  res = inp
-  res = get_month(description) unless check_input(inp, 3)
-  res = get_month(description) unless (res = check_month(inp))>0
-  res
+  input = gets.chomp
+  exit if check_exit(input)
+  month = get_month(description) unless check_input(input, 3)
+  month = check_month(input)
+  month = get_month(description) if month.nil?
+  month
 end
 
 def leap_year?(year)
-  (year % 4 == 0) && !(year % 100 == 0) || (year % 400 == 0)
+  year % 4 == 0 && year % 100 != 0 || year % 400 == 0
 end
 
 def date_by_month(year)
   date_by_month = {1 => 31, 2 => 28, 3 => 31, 4 => 30, 5 => 31, 
                    6 => 30, 7 => 31, 8 => 31, 9 => 30, 10 => 31, 
                    11 => 30, 12 => 31}
-  (date_by_month[2] = 29) if leap_year?(year)
+  date_by_month[2] = 29 if leap_year?(year)
   date_by_month
 end
 
@@ -57,22 +57,19 @@ end
 
 def get_day(description, year, month)
   print "#{year}.#{month}.#{description}"
-  inp = gets.chomp
-  exit if check_exit(inp)
-  res = inp.to_i
-  res = get_day(description, year, month) unless check_input(res, 1)
-  res = get_day(description, year, month) unless check_date(res, year, month)
-  res
+  input = gets.chomp
+  exit if check_exit(input)
+  day = input.to_i
+  day = get_day(description, year, month) unless check_input(day, 1)
+  day = get_day(description, year, month) unless check_date(day, year, month)
+  day
 end
 
 def date_of_year(day, month, year)
   month_dates = date_by_month(year)
-  result = 0
-  (1..(month-1)).each{ |month_number|
-    result += month_dates[month_number]
-  }
+  result = month_dates.take(month-1).sum(0){|month, day| day}
   result += day
-  return result
+  result
 end
 
 puts "Введите дату"

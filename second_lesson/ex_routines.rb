@@ -1,17 +1,17 @@
-def check_exit(inp)
-  ['exit', 'quit', 'close', 'стоп'].include?(inp.downcase)
+def check_exit(input)
+  ['exit', 'quit', 'close', 'стоп'].include?(input.downcase)
 end
 
-def check_input(inp, type)
+def check_input(input, type)
   case type
   when 0
-    (inp.class == String) && (inp.size > 0)
+    input.class == String && input.size > 0
   when 1
-    (inp.class == Integer) && (inp > 0)
+    input.class == Integer && input > 0
   when 2
-    (inp.class == Float) && (inp >= 0)
+    input.class == Float && input >= 0
   when 3
-    ((inp.class == String) && (inp.size > 0) )|| ((inp.class == Integer) && (inp > 0))
+    (input.class == String && input.size > 0) || (input.class == Integer && input > 0)
   else
     false
   end
