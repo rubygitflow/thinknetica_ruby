@@ -26,7 +26,7 @@ def check_month(description)
   months.each_with_index{ |arr,index| 
     return index + 1 if arr.include?(description.to_s.downcase)
   }
-  0
+  nil
 end
 
 def get_month(description)
@@ -35,6 +35,7 @@ def get_month(description)
   exit if check_exit(input)
   month = get_month(description) unless check_input(input, 3)
   month = check_month(input)
+  puts "month=#{month.inspect}"
   month = get_month(description) if month.nil?
   month
 end
