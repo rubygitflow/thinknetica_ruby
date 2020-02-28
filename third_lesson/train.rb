@@ -1,6 +1,5 @@
 class Train
-  attr_reader :speed, :route, :station
-  attr_reader :number, :type, :wagon_count
+  attr_reader :number, :type, :wagon_count, :speed, :route, :station
 
   def initialize(number, type, wagon_count)
     @speed = 0
@@ -10,19 +9,19 @@ class Train
   end
 
   def gain_speed(speed)
-    self.speed = speed
+    @speed = speed
   end
 
   def reset_speed
-    self.speed = 0
+    @speed = 0
   end
 
   def attach_wagon
-    wagon_count += 1 if speed == 0
+    @wagon_count += 1 if speed == 0
   end
 
   def detach_wagon
-    wagon_count -= 1 if speed == 0 and wagon_count > 0
+    @wagon_count -= 1 if speed == 0 and wagon_count > 0
   end
 
   def take_route(route)
@@ -33,16 +32,12 @@ class Train
   def previous_station
     if route.any?
       route.previous_station(station) 
-    else
-      false
     end
   end
 
   def next_station
     if route.any?
       route.next_station(station) 
-    else
-      false
     end
   end
 
@@ -52,8 +47,6 @@ class Train
       station.send_train(self)
       station = is_next_station
       station.take_train(self)
-    else
-      false
     end
   end
 
@@ -63,8 +56,6 @@ class Train
       station.send_train(self)
       station = is_previous_station
       station.take_train(self)
-    else
-      false
     end
   end
 
