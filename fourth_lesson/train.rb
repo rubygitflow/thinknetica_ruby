@@ -19,10 +19,8 @@ class Train
   end
 
   def attach_wagon(wagon)
-    # Вопрос куратору: Как сделать, чтобы здесь работало чтение свойств и методов?
-    if speed == 0 # && wagon.wagon_type == type && wagon.train_number.nil?
+    if speed == 0 && wagon.wagon_type == type
       @wagon_list << wagon
-      # wagon.include_to_train(number) 
     end
   end
 
