@@ -20,15 +20,19 @@ class Route
   end
 
   def insert_station(index, station)
-    if !stations.include?(station) && index > 0 && index <= (stations.count - 1)
+    # if !stations.include?(station) && index >= -stations.count && index < stations.count
+    # повторяющиеся станции разрешаем
+    if index >= -stations.count && index < stations.count
       @stations.insert(index, station)
     end
   end
 
   def remove_station(station)
-    if stations.include?(station) && stations.first != station && stations.last != station
-      @stations.delete(station) if station.trains.detect { |train| train.route == self }
-    end
+    # слишком жесткое условие требует отладки
+    # if stations.include?(station) && stations.first != station && stations.last != station
+    #   @stations.delete(station) if station.trains.detect { |train| train.route == self }
+    # end
+    @stations.delete(station)
   end
 
   def map_stations
