@@ -6,7 +6,7 @@ module InstanceCounter
 
   module ClassMethods
     def instances
-      self.instances_count
+      self.instances_count ||= 0
     end
   end
 
