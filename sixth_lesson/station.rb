@@ -23,10 +23,6 @@ class Station
     register_instance
   end
 
-  def validate!
-    raise "Name has invalid format" if name !~ INCLUDE_SYMBOL_EXAMPLE || name =~ EXCLUDE_SYMBOL_EXAMPLE  
-  end
-
   def take_train(train)
     @trains << train unless trains.include?(train)
   end
@@ -58,4 +54,15 @@ class Station
   def self.all
     @@stations
   end
+
+  private
+
+  def validate!
+    validate_name!
+  end
+  
+  def validate_name!
+    raise "Name has invalid format" if name !~ INCLUDE_SYMBOL_EXAMPLE || name =~ EXCLUDE_SYMBOL_EXAMPLE  
+  end
+
 end

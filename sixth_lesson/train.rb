@@ -21,10 +21,6 @@ class Train
     @wagon_list = []
   end
 
-  def validate!
-    raise "Number has invalid format" if number !~ NUMBER_EXAMPLE
-  end
-
   def gain_speed(speed)
     @speed = speed
   end
@@ -86,4 +82,15 @@ class Train
     found_trains = @@trains.select {|train| train.number == number}
     found_trains.first unless found_trains.nil?
   end
+
+  private
+
+  def validate!
+    validate_number!
+  end
+
+  def validate_number!
+    raise "Number has invalid format" if number !~ NUMBER_EXAMPLE
+  end
+
 end
