@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'wagon'
 
 class CargoWagon < Wagon
@@ -8,14 +10,14 @@ class CargoWagon < Wagon
   def initialize(volume = 10)
     @max_volume = volume
     @empty_volume = @max_volume
-    super(Cargo)
+    super(CARGO)
   end
 
   def take_volume
     @empty_volume -= 1 if @empty_volume != 0
   end
 
-  def get_out_volume
+  def getout_volume
     @empty_volume += 1 if empty_volume < max_volume
   end
 

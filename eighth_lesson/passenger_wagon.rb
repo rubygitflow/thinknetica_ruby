@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'wagon'
 
 class PassengerWagon < Wagon
@@ -8,14 +10,14 @@ class PassengerWagon < Wagon
   def initialize(seats = 100)
     @max_seats = seats
     @empty_seats = @max_seats
-    super(Passenger)
+    super(PASSENGER)
   end
 
   def take_seat
     @empty_seats -= 1 if @empty_seats != 0
   end
 
-  def get_out_seat
+  def getout_seat
     @empty_seats += 1 if empty_seats < max_seats
   end
 
