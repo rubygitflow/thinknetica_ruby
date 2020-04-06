@@ -30,25 +30,25 @@ module Validation
                     self.class.validations
       validations.each do |validation|
         validation[:attr] = instance_variable_get("@#{validation[:name]}")
-        send validation[:type], validation
+        send "validate_#{validation[:type]}", validation
       end
     end
 
-    def presence(options)
+    def validate_presence(options)
       raise "Attribute can't be blank!" if options[:attr].to_s.empty?
     end
 
-    def format(options)
+    def validate_format(options)
       raise 'Wrong format attribute!' if options[:attr] !~ options[:args].first
     end
 
-    def exformat(options)
+    def validate_exformat(options)
       return unless options[:attr] !~ options[:args].first ||
                     options[:attr] =~ options[:args].last
       raise 'Wrong format attribute!' 
     end
 
-    def kind(options)
+    def validate_kind(options)
       unless options[:attr].is_a?(options[:args].first)
         raise 'Wrong class of attribute!'
       end
