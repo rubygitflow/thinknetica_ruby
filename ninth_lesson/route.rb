@@ -1,11 +1,16 @@
 # frozen_string_literal: true
 
 require_relative 'instance_counter'
+require_relative 'validation'
 
 class Route
   include InstanceCounter
+  include Validation
 
-  attr_reader :stations
+  attr_reader :stations, :first_station, :last_station
+
+  validate :first_station, :presence
+  validate :last_station, :presence
 
   @@routes = []
 
@@ -16,6 +21,10 @@ class Route
   end
 
   def initialize(first, last)
+    @first_station = first
+    @last_station = last
+    validate!
+
     @stations = [first, last]
     @@routes << self
     register_instance
